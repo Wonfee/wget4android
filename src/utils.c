@@ -1218,6 +1218,7 @@ get_grouping_data (const char **sep, const char **grouping)
   static bool initialized;
   if (!initialized)
     {
+#ifdef HAVE_NLS
       /* Get the grouping info from the locale. */
       struct lconv *lconv = localeconv ();
       cached_sep = lconv->thousands_sep;
@@ -1241,6 +1242,10 @@ get_grouping_data (const char **sep, const char **grouping)
             cached_sep = ".";
           cached_grouping = "\x03";
         }
+#else
+        cached_sep = ",";
+        cached_grouping = "\x03";
+#endif
       initialized = true;
     }
   *sep = cached_sep;
@@ -1707,9 +1712,9 @@ abort_run_with_timeout (int sig)
   /* We don't have siglongjmp to preserve the set of blocked signals;
      if we longjumped out of the handler at this point, SIGALRM would
      remain blocked.  We must unblock it manually. */
-  int mask = siggetmask ();
-  mask &= ~sigmask (SIGALRM);
-  sigsetmask (mask);
+//  int mask = siggetmask ();
+//  mask &= ~sigmask (SIGALRM);
+//  sigsetmask (mask);
 
   /* Now it's safe to longjump. */
   longjmp (run_with_timeout_env, -1);
