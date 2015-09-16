@@ -62,7 +62,7 @@ as that of the covered work.  */
 #  ifdef __cplusplus
 typedef bool _Bool;
 #  else
-typedef unsigned char _Bool;
+//typedef unsigned char _Bool;
 #  endif
 # endif
 # define bool _Bool
@@ -124,6 +124,7 @@ int strcasecmp ();
 #ifndef HAVE_STRNCASECMP
 int strncasecmp ();
 #endif
+#undef HAVE_TIMEGM
 #ifndef HAVE_STRPTIME
 char *strptime ();
 #endif
@@ -138,7 +139,7 @@ void *memrchr (const void *, int, size_t);
 /* These are defined in snprintf.c.  It would be nice to have an
    snprintf.h, though.  */
 #ifndef HAVE_SNPRINTF
-int snprintf ();
+//int snprintf ();
 #endif
 #ifndef HAVE_VSNPRINTF
 int vsnprintf ();
@@ -200,7 +201,7 @@ typedef unsigned long uint32_t;
 #   if SIZEOF_SHORT == 4
 typedef unsigned short uint32_t;
 #   else
- #error "Cannot determine a 32-bit unsigned integer type"
+// #error "Cannot determine a 32-bit unsigned integer type"
 #   endif
 #  endif
 # endif
@@ -208,12 +209,12 @@ typedef unsigned short uint32_t;
 
 /* If uintptr_t isn't defined, simply typedef it to unsigned long. */
 #ifndef HAVE_UINTPTR_T
-typedef unsigned long uintptr_t;
+//typedef unsigned long uintptr_t;
 #endif
 
 /* If intptr_t isn't defined, simply typedef it to long. */
 #ifndef HAVE_INTPTR_T
-typedef long intptr_t;
+//typedef long intptr_t;
 #endif
 
 #endif /* SYSDEP_H */

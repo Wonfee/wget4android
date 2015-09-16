@@ -37,8 +37,10 @@ as that of the covered work.  */
 #define WGET_H
 
 /* Disable assertions when debug support is not compiled in. */
+#ifndef NDEBUG
 #ifndef ENABLE_DEBUG
 # define NDEBUG
+#endif
 #endif
 
 /* Is OpenSSL or GNUTLS available? */
@@ -159,7 +161,8 @@ as that of the covered work.  */
 #else
   /* Fall back to using long, which is always available and in most
      cases large enough. */
-typedef long off_t;
+//typedef long off_t;
+typedef long wgint;
 # define SIZEOF_WGINT SIZEOF_LONG
 #endif
 
